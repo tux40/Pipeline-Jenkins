@@ -1,0 +1,15 @@
+pipeline{
+ agent any
+    stages{
+        stage ("Clone Code"){
+            steps {
+                script {
+                    git([url: 'http://172.105.123.19:7990/scm/hel/helloworld.git',   branch: 'master', credentialsId: 'user_bitbucket_1'])
+            }
+                
+        }
+    }
+    
+ }
+ 
+}
