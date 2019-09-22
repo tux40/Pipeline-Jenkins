@@ -1,0 +1,22 @@
+ocbc template
+- Pipeline config .yaml
+- nama repo scm = nama service
+- nama service = overview dari nama service
+- branch dari publish scm
+- version dari tag
+- image = namservice-branch-env-tag
+- repo url = nexus
+- ocp-service-nama
+- ocp-expose-name
+- ocp-project-name
+- env-vars
+
+- ocp-expose = true | false
+- replica
+- dev-testing-script = scm url link
+- sit - testing - script
+- uat - testing - script
+- dev - image - deps
+  -> name image
+  -> env-vars
+- deploy to prod = true | false
