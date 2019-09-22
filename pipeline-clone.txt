@@ -1,15 +1,39 @@
-pipeline{
- agent any
+pipeline {
+    agent any
+    tools {
+        maven 'maven'
+    }
     stages{
-        stage ("Clone Code"){
+    
+    stage ("Clone Code"){
             steps {
                 script {
-                    git([url: 'http://172.105.123.19:7990/scm/hel/helloworld.git',   branch: 'master', credentialsId: 'user_bitbucket_1'])
+                    git([url: 'https://github.com/tux40/hello-world.git',   branch: 'master'])
             }
                 
         }
+    }   
+    
+    stage ("Build Maven"){
+        steps {
+            script{
+                readpom = readMavenPom file: 'pom.xml';
+                def artefactversion = readpom.version;
+                echo "This version of an artifact is ${artefactversion }"
+                echo "The Artefact is - ${readpom.artifactId} "
+                sh 'mvn clean install package'
+                
+            }
+        }
+        
+        post {
+                success {
+                    echo 'Now Archiving'
+                }
+            }
     }
     
- }
- 
+    
+    }
+        
 }
